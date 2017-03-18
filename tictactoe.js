@@ -6,9 +6,10 @@
         currentPlayer = 1,
         size = 3,
         moves = 0,
-        messageDisplay = document.getElementById('message'),
         gameMessages = new Object(),
-        selectedClass = 'selected';
+        selectedClass = 'selected',
+        messageDisplay = document.getElementById('message'),
+        gameOver = false;
 
     function loadAnswers() {
         //Horizontal: [1, 2, 3] [4, 5, 6] [7, 8, 9]
@@ -27,18 +28,24 @@
     function loadMessages() {
         gameMessages.win = 'You win player ';
         gameMessages.next = 'Your turn player ';
-        gameMessages.error = 'Select a different square';
-        gameMessages.nowinner = 'Game is void';
+        gameMessages.error = 'Sorry, you cannot select that square player ';
+        gameMessages.nowinner = 'Game is void ';
     }
 
     function setupBoard() {
+
+        var resetButton = document.getElementById('reset-button');
+
+        resetButton.addEventListener('click', function() {
+            resetGame();
+        })
 
         // click handler
         var handler = function(e) {
 
             var player = (currentPlayer === 1) ? 1 : 0
 
-            if (!e.target.classList.contains(selectedClass)) {
+            if (!e.target.classList.contains(selectedClass) && !gameOver) {
 
                 // set player tag
                 var playerTag = (player === 1) ? 'X' : 'O';
@@ -63,14 +70,26 @@
 
                 // handle a winning game, void game, or continuation
                 if (checkForWin(player)) {
-                    resetGame();
+                    //resetGame();
+                    gameOver = true;
+                    setMessage.call(messageDisplay, gameMessages.win + ((currentPlayer === 1) ? 'X' : 'O'))
                 } else {
                     switchPlayer(Math.abs(player - 1));
                     if (moves >= 9) {
-                        resetGame();
+                        //resetGame();
+                        setMessage.call(messageDisplay, gameMessages.nowinner)
+                        gameOver = true;
+                    } else {
+                        setMessage.call(messageDisplay, gameMessages.next + ((currentPlayer === 1) ? 'X' : 'O'))
                     }
                 }
-                setMessage.call(messageDisplay, gameMessages.next + ((currentPlayer === 1) ? 'X' : 'O'))
+
+
+            } else {
+
+                if (!gameOver) {
+                    setMessage.call(messageDisplay, gameMessages.error + ((currentPlayer === 1) ? 'X' : 'O'))
+                }
 
             }
 
@@ -169,18 +188,20 @@
     }
 
     function clearBoard() {
-    	
+
         for (var h = 1; h < 10; h++) {
-            toggleSelection.call(document.getElementById(h))
+            toggleSelection.call(document.getElementById(h));
         }
     }
 
     function resetGame() {
         currentPlayer = 1;
         moves = 0;
+        gameOver = false;
         player0Selections = new Array();
         player1Selections = new Array();
         clearBoard();
+        setMessage.call(messageDisplay, gameMessages.next + 'X');
     }
 
     loadAnswers();
