@@ -78,3 +78,49 @@ header h1 {
   border-bottom: 1px solid #333;
 }
 
+.gameboard div:hover .ch-info-back {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+/*
+.square {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+
+  box-shadow: inset 0 0 0 4px #e1e1e1, 0 0 1px transparent;
+}
+.square:hover, .square:focus, .square:active {
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+
+  box-shadow: inset 0 0 0 4px #2098D1, 0 0 1px transparent;
+}
+*/
+
+.square {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow;
+  transition-property: box-shadow;
+  box-shadow: inset 0 0 0 4px #e1e1e1, 0 0 1px transparent;
+  /* Hack to improve aliasing on mobile/tablet devices */
+}
+.square:hover:not(.selected), .square:focus:not(.selected), .square:active:not(.selected) {
+  box-shadow: inset 0 0 0 4px #2098D1, 0 0 1px transparent;
+  /* Hack to improve aliasing on mobile/tablet devices */
+}
+
