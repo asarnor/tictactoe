@@ -26,8 +26,19 @@ time, mark, audio, video {
 }
 /* HTML5 display-role reset for older browsers */
 header {
-  display: block;
+  font-size: 36px; /* Some tweener fallback that doesn't look awful */ 
+  font-size: 5.4vw;
 }
+
+.header {
+  text-align: center;
+  display: block;
+  margin: auto;
+
+  height: 150px;
+  height: 20vmin;
+}
+
 body {
   line-height: 1;
   background-color: #fafafa;
@@ -40,10 +51,17 @@ body {
           box-sizing: border-box;
 }
 .container {
+  /*
   width: 390px;
   margin: 0 auto;
   text-align: center;
-  color: #333;
+  color: #333;*/
+
+  width: 600px;
+  width: 120vmin;
+  height: 600px;
+  height: 120vmin;
+
 }
 
 /* Header */
@@ -62,14 +80,40 @@ header h1 {
 .gameboard {
   overflow: hidden;
   box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.5);
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 450px;
+  width: 60vmin;
+  height: 450px;
+  height: 60vmin;
+  margin: auto;
+  background-color: gray;
+
 }
 .gameboard div {
   background-color: #d9d9d9;
+  /*
   width: 130px;
   height: 130px;
+  */
   float: left;
-  font-size: 80px;
-  line-height: 130px;
+  /*font-size: 80px;*/
+  line-height: 20vmin;
+
+  width: 150px;
+  width: 20vmin;
+  height: 150px;
+  height: 20vmin;
+  position: relative;
+  font-size: 300%;
+  font-size: 20vmin;
+  text-align: center;
+  cursor: pointer;
+
 }
 .r-border {
   border-right: 1px solid #333;
@@ -83,6 +127,12 @@ header h1 {
   opacity: 1;
   pointer-events: auto;
 }
+
+.info {
+  width: 150px;
+  width: 20vmin;
+}
+
 /*
 .square {
   display: inline-block;
@@ -124,3 +174,111 @@ header h1 {
   /* Hack to improve aliasing on mobile/tablet devices */
 }
 
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal .button {
+  border: 1px solid #888;
+  padding: 2px;
+  width:45%;
+  margin:2px;
+  cursor: pointer;
+}
+
+ #reset-button {
+    border: 1px solid #888;
+    padding: 2px;
+    margin:2px;
+    cursor: pointer;
+ }
+
+.modal .buttons div {
+  display: inline-block;
+  float: left;
+  margin-top: 3px;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 30vmin;
+    height: 30vmin;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: grey;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {
+  padding: 2px 16px;
+}
+
+.modal-body h3 {
+  font-size: 6vmin;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 6px;
+}
+
+.modal-body #scores {
+  font-size: 2vmin;
+  text-align: center;
+  margin-top: 6px;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}

@@ -6,9 +6,13 @@
         currentPlayer = 1,
         size = 3,
         moves = 0,
+        wins0 = 0,
+        wins1 = 0,
         gameMessages = new Object(),
         selectedClass = 'selected',
         messageDisplay = document.getElementById('message'),
+        scores = document.getElementById('scores'),
+        modal = document.getElementById('myModal'),
         gameOver = false;
 
     function loadAnswers() {
@@ -32,6 +36,40 @@
         gameMessages.nowinner = 'Game is void ';
     }
 
+    function setupModal() {
+
+        // Modal Reset Button
+        var modalReset = document.getElementsByClassName("modal-reset")[0];
+
+        modalReset.addEventListener('click', function() {
+            resetGame(true);
+        })
+
+        // Modal Restart
+        var modalRestart = document.getElementsByClassName("modal-restart")[0];
+
+        modalRestart.addEventListener('click', function() {
+            resetGame();
+        })
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.addEventListener('click', function() {
+            modal.style.display = "none";
+            resetGame();
+        })
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.addEventListener('click', function(evt) {
+            if (evt.target == modal) {
+                modal.style.display = "none";
+                resetGame();
+            }
+        })
+    }
+
     function setupBoard() {
 
         var resetButton = document.getElementById('reset-button');
@@ -39,6 +77,8 @@
         resetButton.addEventListener('click', function() {
             resetGame();
         })
+
+        setupModal();
 
         // click handler
         var handler = function(e) {
@@ -72,23 +112,34 @@
                 if (checkForWin(player)) {
                     //resetGame();
                     gameOver = true;
-                    setMessage.call(messageDisplay, gameMessages.win + ((currentPlayer === 1) ? 'X' : 'O'))
+                    setMessage.call(messageDisplay, gameMessages.win + ((currentPlayer === 1) ? 'X' : 'O'));
+                    modal.style.display = "block";
+                    // tally wins
+                    if (player === 0) {
+                        wins0++;
+                    } else {
+                        wins1++;
+                    }
                 } else {
                     switchPlayer(Math.abs(player - 1));
                     if (moves >= 9) {
                         //resetGame();
                         setMessage.call(messageDisplay, gameMessages.nowinner)
                         gameOver = true;
+                        modal.style.display = "block";
                     } else {
-                        setMessage.call(messageDisplay, gameMessages.next + ((currentPlayer === 1) ? 'X' : 'O'))
+                        setMessage.call(messageDisplay, gameMessages.next + ((currentPlayer === 1) ? 'X' : 'O'));
                     }
                 }
+
+                setMessage.call(scores, 'X score: '+ wins0  + '/ O score: ' + wins1);
 
 
             } else {
 
                 if (!gameOver) {
-                    setMessage.call(messageDisplay, gameMessages.error + ((currentPlayer === 1) ? 'X' : 'O'))
+                    setMessage.call(messageDisplay, gameMessages.error + ((currentPlayer === 1) ? 'X' : 'O'));
+                    modal.style.display = "block";
                 }
 
             }
@@ -194,7 +245,7 @@
         }
     }
 
-    function resetGame() {
+    function resetGame(restart) {
         currentPlayer = 1;
         moves = 0;
         gameOver = false;
@@ -202,10 +253,23 @@
         player1Selections = new Array();
         clearBoard();
         setMessage.call(messageDisplay, gameMessages.next + 'X');
+        if (restart) {
+            clearWins();
+        }
+    }
+
+    function clearWins() {
+        wins0 = 0;
+        wins1 = 0;
     }
 
     loadAnswers();
     loadMessages();
     setupBoard();
+
+
+
+
+
 
 })();

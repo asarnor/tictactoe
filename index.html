@@ -6,8 +6,15 @@
     
 </head>
 <body>
+    
+    <div class="header">
+        <header>Tic Tac Toe</header>
+            <div id="message" class="message"></div>
+            <div>
+                <span type="button" id="reset-button">Restart</span>
+            </div>
+        </div>
     <div class="container">
-    <header>Tic Tac Toe</header>
         <div id="gameboard" class="gameboard">
             <div id="1" class="square r-border b-border"></div>
             <div id="2" class="square r-border b-border"></div>
@@ -18,12 +25,29 @@
             <div id="7" class="square r-border"></div>
             <div id="8" class="square r-border"></div>
             <div id="9" class="square"></div>
-          </div>
+        </div>
     </div>
 
-    <div id="message" class="message"></div>
+    
+    <!-- The Modal -->
+<div id="myModal" class="modal">
 
-    <input type="button" id="reset-button" name="reset" value="Reset" />
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <h3>Game Over!</h3>
+      <div id="scores"> </div>
+      <div class="buttons">
+        <div class="button modal-restart x-color" id="restart">Restart</div>
+        <div class="button modal-reset o-color" id="reset">Reset Game</div>
+    </div>
+    </div>
+  </div>
+
+</div>
 
     <script type="text/javascript" src="tictactoe.js"></script>
 </body>
