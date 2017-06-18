@@ -1,0 +1,27 @@
+{
+  "name": "tictactoe",
+  "version": "1.0.0",
+  "description": "tictactoe example",
+  "main": "tictactoe.js",
+  "dependencies": {
+    "webpack": "^2.6.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.4.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack-dev-server --entry ./tictactoe.js --output-filename ./dist/bundle.js",
+    "build:prod": "webpack ./tictactoe.js ./dist/bundle.js -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asarnor/tictactoe.git"
+  },
+  "author": "Abdul Sarnor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asarnor/tictactoe/issues"
+  },
+  "homepage": "https://github.com/asarnor/tictactoe#readme"
+}
