@@ -105,6 +105,8 @@
                         return a - b
                     });
                 }
+                console.log('player0Selections',player0Selections)
+                console.log('player1Selections',player1Selections)
 
                 moves++;
 
@@ -139,7 +141,7 @@
 
                 if (!gameOver) {
                     setMessage.call(messageDisplay, gameMessages.error + ((currentPlayer === 1) ? 'X' : 'O'));
-                    modal.style.display = "block";
+                    //modal.style.display = "block";
                 }
 
             }
