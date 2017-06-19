@@ -1,3 +1,5 @@
+import './tictactoe.css';
+
 (function() {
 
     var winners = new Array(),
@@ -268,10 +270,5 @@
     loadAnswers();
     loadMessages();
     setupBoard();
-
-
-
-
-
 
 })();
